@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messaging_app/background.dart';
 import 'package:messaging_app/createNewMessagePage/createNewMessageContainer.dart';
+import 'package:messaging_app/createNewMessagePage/createNewMessageFooter.dart';
 import 'package:messaging_app/discoverPage/discoverPageHeader.dart';
 
 class CreateNewMessageMain extends StatefulWidget {
@@ -19,7 +20,8 @@ class _CreateNewMessageMainState extends State<CreateNewMessageMain> {
           children: [
             Background(),
             DiscoverPageHeader(),
-            CreateNewMessageContainer()
+            CreateNewMessageContainer(),
+            CreateNewMessageFooter()
           ],
         ),
       ),

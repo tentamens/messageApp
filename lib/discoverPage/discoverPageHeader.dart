@@ -9,17 +9,17 @@ class DiscoverPageHeader extends StatelessWidget {
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.fromLTRB(12, 60, 12, 15),
-      color: HexColor("1B1A55").withOpacity(0.7),
+      color: HexColor("122B42").withOpacity(0.7),
       child: const Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: <Widget>[
-          Icon(Icons.arrow_back, size: 30, color: Colors.white),
+          Icon(Icons.arrow_back, size: 27, color: Colors.white),
           Text(
             "Loading...",
             style: TextStyle(
-                color: Colors.white, fontSize: 30, fontWeight: FontWeight.w600),
+                color: Colors.white, fontSize: 27, fontWeight: FontWeight.w600),
           ),
-          Icon(Icons.notifications, size: 30, color: Colors.white)
+          Icon(Icons.notifications, size: 27, color: Colors.white)
         ],
       ),
     );
