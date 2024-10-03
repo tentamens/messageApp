@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:messaging_app/discoverPage/discoverPageHeader.dart';
 import 'package:messaging_app/discoverPage/discoverPageMain.dart';
+import 'package:messaging_app/homepage/homePage.dart';
 
 void main() {
-  runApp(Main());
+  runApp(HomePage());
 }
 
 class Main extends StatefulWidget {

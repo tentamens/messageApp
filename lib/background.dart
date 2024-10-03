@@ -9,7 +9,7 @@ class Background extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: HexColor("#F4F4FB"),
+      color: HexColor("#021526"),
     );
   }
 }
