@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:messaging_app/globals/apiHandler.dart';
 
 class CreateNewMessageFooter extends StatefulWidget {
   const CreateNewMessageFooter({Key? key}) : super(key: key);
@@ -9,6 +10,8 @@ class CreateNewMessageFooter extends StatefulWidget {
 }
 
 class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
+  String messageContent = "";
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -31,6 +34,8 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
             const SizedBox(width: 8),
             Expanded(
                 child: TextField(
+              onChanged: (String content) =>
+                  setState(() => messageContent = content),
               keyboardType: TextInputType.multiline,
               maxLines: null,
               style: TextStyle(
@@ -44,8 +49,8 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
                   ),
                   border: InputBorder.none),
             )),
-            Container(
-              margin: const EdgeInsets.only(bottom: 9),
+            TextButton(
+              onPressed: message,
               child: Icon(
                 Icons.send_rounded,
                 color: HexColor("00ADB5"),
@@ -57,5 +62,16 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
         ),
       ),
     );
+  }
+
+  void message() async {
+    final result = await ApiHandler().sendMessagePublic(messageContent);
+    if (result) {
+      print(
+          "success in sending out message\n !!TODO!!\n add result and negative result when sending out public message");
+      return;
+    }
+    print(
+        "Failed to send out message\n !!TODO!!\n add result and negative result when sending out public message");
   }
 }
