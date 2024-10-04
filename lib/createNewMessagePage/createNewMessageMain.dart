@@ -13,6 +13,12 @@ class CreateNewMessageMain extends StatefulWidget {
 
 class _CreateNewMessageMainState extends State<CreateNewMessageMain> {
   @override
+  void initState() {
+    super.initState();
+    print("hi");
+  }
+
+  @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(

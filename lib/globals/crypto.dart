@@ -7,9 +7,15 @@ import 'package:random_string_generator/random_string_generator.dart';
 List public = [];
 List private = [];
 String userId = "";
+bool loaded = false;
 
 class Crypto {
   void init() async {
+    print("init");
+    if (loaded) {
+      return;
+    }
+    loaded = true;
     Directory appDir = await getApplicationDocumentsDirectory();
     String filePath = "${appDir.path}/cryptoStuff.json";
     File file = File(filePath);
@@ -22,18 +28,21 @@ class Crypto {
     public = fileData["public"];
     private = fileData["private"];
     userId = fileData["userId"];
-    if (public == "") {
+    print(userId);
+    if (userId == "") {
       initNewClient();
     }
   }
 
   void initNewClient() async {
+    print("init new client");
     userId = RandomStringGenerator(maxLength: 15, minLength: 10).generate();
     final algorithm = X25519();
     final keyPair = await algorithm.newKeyPair();
     final publicKey = await keyPair.extract();
     public = publicKey.bytes;
     private = await keyPair.extractPrivateKeyBytes();
+    print(userId);
     saveFile();
   }
 

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:messaging_app/background.dart';
 import 'package:messaging_app/discoverPage/discoverPageFooter.dart';
 import 'package:messaging_app/discoverPage/discoverPageHeader.dart';
+import 'package:messaging_app/globals/crypto.dart';
+import 'package:messaging_app/globals/storedData.dart';
 
 class DiscoverPageMain extends StatefulWidget {
   const DiscoverPageMain({Key? key}) : super(key: key);
@@ -11,6 +13,14 @@ class DiscoverPageMain extends StatefulWidget {
 }
 
 class _DiscoverPageMainState extends State<DiscoverPageMain> {
+  @override
+  void initState() {
+    super.initState();
+    print("hi");
+    StoredData().load();
+    Crypto().init();
+  }
+
   @override
   Widget build(BuildContext context) {
     return const Scaffold(

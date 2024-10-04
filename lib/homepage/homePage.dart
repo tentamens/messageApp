@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messaging_app/background.dart';
+import 'package:messaging_app/globals/crypto.dart';
+import 'package:messaging_app/globals/storedData.dart';
 import 'package:messaging_app/homepage/homePageActionButton.dart';
 import 'package:messaging_app/homepage/homePageHeader.dart';
 import 'package:messaging_app/homepage/homePageMessages.dart';
@@ -12,6 +14,13 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Crypto().init();
+    StoredData().load();
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

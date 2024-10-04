@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:messaging_app/discoverPage/discoverPageHeader.dart';
 import 'package:messaging_app/discoverPage/discoverPageMain.dart';
+import 'package:messaging_app/globals/crypto.dart';
+import 'package:messaging_app/globals/storedData.dart';
 import 'package:messaging_app/homepage/homePage.dart';
 
 void main() {
@@ -15,6 +17,12 @@ class Main extends StatefulWidget {
 }
 
 class _MainState extends State<Main> {
+  @override
+  void initState() {
+    super.initState();
+    print("hello world");
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
