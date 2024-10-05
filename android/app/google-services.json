@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "1047938981596",
+    "project_id": "messagingapp-4651c",
+    "storage_bucket": "messagingapp-4651c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047938981596:android:67b356abccd3346ce95e19",
+        "android_client_info": {
+          "package_name": "com.example.messaging_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhUhqj9TA7bUXgtotndkZG3KpG_2A04WU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1047938981596:android:4820e9f38268f3cce95e19",
+        "android_client_info": {
+          "package_name": "com.losttentdev.message"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhUhqj9TA7bUXgtotndkZG3KpG_2A04WU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

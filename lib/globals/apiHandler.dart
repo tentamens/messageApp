@@ -1,9 +1,13 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
 
 import 'package:messaging_app/globals/crypto.dart';
 import 'package:messaging_app/globals/storedData.dart';
+import 'package:web_socket_channel/web_socket_channel.dart';
+
+WebSocketChannel? channel;
 
 class ApiHandler {
   Future<bool> sendMessagePublic(String message) async {

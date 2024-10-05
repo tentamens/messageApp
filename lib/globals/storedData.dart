@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:messaging_app/globals/crypto.dart';
 import 'package:path_provider/path_provider.dart';
 
 String name = "";
@@ -22,7 +23,7 @@ class StoredData {
 
     var fileDataJson = file.readAsStringSync();
     var fileData = jsonDecode(fileDataJson);
-    name = fileData["name"];
+    name = fileData["name"] ?? "";
   }
 
   Future<void> createFile(file) async {
