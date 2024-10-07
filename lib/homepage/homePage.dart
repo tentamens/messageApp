@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     Crypto().init();
     StoredData().load();
     SocketConnection().connectToSever();
-    SocketConnection().registerClient();
+    //SocketConnection().registerClient();
   }
 
   @override

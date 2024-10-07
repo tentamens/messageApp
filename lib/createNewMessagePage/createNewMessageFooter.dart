@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:messaging_app/globals/apiHandler.dart';
+import 'package:messaging_app/globals/socketConnection.dart';
 
 class CreateNewMessageFooter extends StatefulWidget {
   const CreateNewMessageFooter({Key? key}) : super(key: key);
@@ -65,8 +66,10 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
   }
 
   void message() async {
-    final result = await ApiHandler().sendMessagePublic(messageContent);
-    if (result) {
+    SocketConnection().sendMessage(messageContent);
+
+    return;
+    if (true) {
       print(
           "success in sending out message\n !!TODO!!\n add result and negative result when sending out public message");
       return;

@@ -29,7 +29,7 @@ class SocketConnection {
     socket.emit("register", data);
   }
 
-  void sendMessage() {
-    final data = {};
+  void sendMessage(String messageData) {
+    final data = {"from": "hiI", "to": "testing1", "text": messageData};
   }
 }
