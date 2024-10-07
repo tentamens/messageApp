@@ -1,7 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:messaging_app/globals/crypto.dart';
 import 'package:path_provider/path_provider.dart';
 
 String name = "";
@@ -9,7 +8,6 @@ bool loaded = false;
 
 class StoredData {
   void load() async {
-    print("loaded");
     if (loaded) {
       return;
     }
