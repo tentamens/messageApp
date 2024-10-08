@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:messaging_app/conversationPage/conversationMessageContainer.dart';
+import 'package:messaging_app/conversationPage/conversationPageMain.dart';
 import 'package:messaging_app/discoverPage/discoverPageHeader.dart';
 import 'package:messaging_app/discoverPage/discoverPageMain.dart';
 import 'package:messaging_app/globals/crypto.dart';
+import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:messaging_app/globals/storedData.dart';
 import 'package:messaging_app/homepage/homePage.dart';
+import 'package:provider/provider.dart';
 
 void main() {
-  runApp(HomePage());
+  final NewMessageNotifer newMess = NewMessageNotifer();
+  newMess.connectToSever();
+  newMess.registerClient();
+  StoredData().setNewMessageNotifer = newMess;
+  runApp(
+    const ConversationPageMain(),
+  );
 }
 
 class Main extends StatefulWidget {

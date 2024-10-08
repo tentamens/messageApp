@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messaging_app/background.dart';
 import 'package:messaging_app/globals/crypto.dart';
+import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:messaging_app/globals/socketConnection.dart';
 import 'package:messaging_app/globals/storedData.dart';
 import 'package:messaging_app/homepage/homePageActionButton.dart';
@@ -21,8 +22,8 @@ class _HomePageState extends State<HomePage> {
 
     Crypto().init();
     StoredData().load();
-    SocketConnection().connectToSever();
-    //SocketConnection().registerClient();
+    NewMessageNotifer().connectToSever();
+    NewMessageNotifer().registerClient();
   }
 
   @override

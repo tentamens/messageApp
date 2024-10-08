@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:hexcolor/hexcolor.dart';
 import 'package:messaging_app/globals/apiHandler.dart';
+import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:messaging_app/globals/socketConnection.dart';
 
 class CreateNewMessageFooter extends StatefulWidget {
-  const CreateNewMessageFooter({Key? key}) : super(key: key);
+  final Function(String text) sendMessagePressed;
+  const CreateNewMessageFooter({Key? key, required this.sendMessagePressed})
+      : super(key: key);
 
   @override
   _CreateNewMessageFooterState createState() => _CreateNewMessageFooterState();
@@ -51,7 +54,7 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
                   border: InputBorder.none),
             )),
             TextButton(
-              onPressed: message,
+              onPressed: widget.sendMessagePressed(messageContent),
               child: Icon(
                 Icons.send_rounded,
                 color: HexColor("00ADB5"),
@@ -66,7 +69,7 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
   }
 
   void message() async {
-    SocketConnection().sendMessage(messageContent);
+    print("calling");
 
     return;
     if (true) {

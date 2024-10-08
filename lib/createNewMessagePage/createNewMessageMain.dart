@@ -27,7 +27,9 @@ class _CreateNewMessageMainState extends State<CreateNewMessageMain> {
             Background(),
             DiscoverPageHeader(),
             CreateNewMessageContainer(),
-            CreateNewMessageFooter()
+            CreateNewMessageFooter(
+              sendMessagePressed: (t) => {},
+            )
           ],
         ),
       ),

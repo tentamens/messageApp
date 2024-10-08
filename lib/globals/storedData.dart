@@ -1,10 +1,12 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:path_provider/path_provider.dart';
 
 String name = "";
 bool loaded = false;
+late NewMessageNotifer messageNotifer;
 
 class StoredData {
   void load() async {
@@ -32,4 +34,6 @@ class StoredData {
   }
 
   get getName => name;
+  set setNewMessageNotifer(v) => messageNotifer = v;
+  NewMessageNotifer get getNewMessageNotifer => messageNotifer;
 }
