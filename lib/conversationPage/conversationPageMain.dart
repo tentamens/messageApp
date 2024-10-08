@@ -31,11 +31,16 @@ class _ConversationPageMainState extends State<ConversationPageMain> {
           ],
           child: Stack(
             children: [
-              Background(),
-              ConversationMessageContainer(),
+              const Background(),
+              Container(
+                  margin: const EdgeInsets.fromLTRB(12, 0, 12, 60),
+                  child: const ConversationMessageContainer()),
               CreateNewMessageFooter(
                 sendMessagePressed: (text) {
-                  NewMessageNotifer().sendMessage(text);
+                  StoredData()
+                      .getNewMessageNotifer
+                      .saveOwnMessage("testing1", text);
+                  StoredData().getNewMessageNotifer.sendMessage(text);
                 },
               )
             ],

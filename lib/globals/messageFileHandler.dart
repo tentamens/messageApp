@@ -26,6 +26,9 @@ class MessageFileHandler {
   }
 
   void addUserMessage(String userid, List newMessage) {
+    if (!messageData.containsKey(userid)) {
+      messageData[userid] = {"name": "hello", "pubkey": [], "messages": []};
+    }
     messageData[userid]["messages"].addAll(newMessage);
   }
 

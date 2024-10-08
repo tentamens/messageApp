@@ -54,7 +54,7 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
                   border: InputBorder.none),
             )),
             TextButton(
-              onPressed: widget.sendMessagePressed(messageContent),
+              onPressed: message,
               child: Icon(
                 Icons.send_rounded,
                 color: HexColor("00ADB5"),
@@ -69,8 +69,7 @@ class _CreateNewMessageFooterState extends State<CreateNewMessageFooter> {
   }
 
   void message() async {
-    print("calling");
-
+    widget.sendMessagePressed(messageContent);
     return;
     if (true) {
       print(

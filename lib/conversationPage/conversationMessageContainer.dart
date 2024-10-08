@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:hexcolor/hexcolor.dart';
 import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:messaging_app/globals/storedData.dart';
 import 'package:provider/provider.dart';
@@ -14,7 +15,7 @@ class ConversationMessageContainer extends StatefulWidget {
 
 class _ConversationMessageContainerState
     extends State<ConversationMessageContainer> {
-  List<String> message = [];
+  List<List> message = [];
 
   @override
   final NewMessageNotifer messageNotifer = StoredData().getNewMessageNotifer;
@@ -30,28 +31,41 @@ class _ConversationMessageContainerState
   }
 
   void reactToNotifer() {
-    print('hi to got ts');
+    print("hello world I called");
     setState(() {
-      message.add(NewMessageNotifer().getNewMessageData[1]);
+      message.add(List.from(NewMessageNotifer().getNewMessageData));
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
+      reverse: true,
       itemCount: message.length,
-      itemBuilder: (context, index) => Container(
-        child: Text(
-          message[index],
-          style: const TextStyle(
-              fontWeight: FontWeight.w600, fontSize: 18, color: Colors.white),
-        ),
+      itemBuilder: (context, index) => Row(
+        mainAxisAlignment:
+            message[index][2] ? MainAxisAlignment.start : MainAxisAlignment.end,
+        children: [
+          Container(
+            margin: const EdgeInsets.only(bottom: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+            decoration: BoxDecoration(
+                color: HexColor("1B1A55"),
+                borderRadius: BorderRadius.circular(18)),
+            child: Text(
+              message[index][1],
+              style: const TextStyle(
+                  fontWeight: FontWeight.w600,
+                  fontSize: 18,
+                  color: Colors.white),
+            ),
+          ),
+        ],
       ),
     );
   }
 
-  void addNewMessage(String a, String b, String text) {
-    print("hello world");
-    message.add(text);
+  void addNewMessage(String a, String b, String text, bool from) {
+    message.add([text, from]);
   }
 }
