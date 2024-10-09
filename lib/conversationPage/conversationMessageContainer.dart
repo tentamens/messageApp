@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:hexcolor/hexcolor.dart';
+import 'package:messaging_app/globals/messageFileHandler.dart';
 import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:messaging_app/globals/storedData.dart';
 import 'package:provider/provider.dart';
@@ -22,6 +23,7 @@ class _ConversationMessageContainerState
   void initState() {
     super.initState();
     messageNotifer.addListener(reactToNotifer);
+    MessageFileHandler().getUserMessages(messageNotifer.getCurrentOpenId);
   }
 
   @override

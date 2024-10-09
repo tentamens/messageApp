@@ -6,6 +6,7 @@ import 'package:socket_io_client/socket_io_client.dart' as soi;
 late soi.Socket socket;
 
 List newMessageData = ["", "", false];
+String currentOpenId = "";
 
 class NewMessageNotifer extends ChangeNotifier {
   void newMessage() {
@@ -29,6 +30,10 @@ class NewMessageNotifer extends ChangeNotifier {
       if (data.runtimeType == List) {
         return;
       }
+      if (currentOpenId != data["from"]["userId"]) {
+        return;
+      }
+      StoredData().moveSendToFront(data["from"]["userId"]);
       newMessageData[1] = data["text"];
       newMessageData[2] = true;
       newMessage();
@@ -64,5 +69,7 @@ class NewMessageNotifer extends ChangeNotifier {
     MessageFileHandler().addUserMessage(userId, [messageData, true]);
   }
 
+  get getCurrentOpenId => currentOpenId;
+  set setCurrentOpenId(v) => currentOpenId = v;
   List get getNewMessageData => newMessageData;
 }

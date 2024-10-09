@@ -36,6 +36,13 @@ class MessageFileHandler {
     messageData[userId] = {"name": name, "pubkey": pubkey, "messages": []};
   }
 
+  List getUserMessages(String userId) {
+    if (!messageData.containsValue(userId)) {
+      return [];
+    }
+    return messageData[userId];
+  }
+
   Future<void> createFile(file) async {
     file.createSync();
     var fileData = {"messageData": {}};

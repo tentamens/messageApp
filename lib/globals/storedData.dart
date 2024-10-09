@@ -7,6 +7,9 @@ import 'package:path_provider/path_provider.dart';
 String name = "";
 bool loaded = false;
 late NewMessageNotifer messageNotifer;
+List<Map> messages = [
+  {"name": "Tentamens", "userId": "testing1", "unread": 0}
+];
 
 class StoredData {
   void load() async {
@@ -15,7 +18,7 @@ class StoredData {
     }
     loaded = true;
     Directory appDir = await getApplicationDocumentsDirectory();
-    String filePath = "${appDir.path}/cryptoStuff.json";
+    String filePath = "${appDir.path}/storedData.json";
     File file = File(filePath);
     if (!file.existsSync()) {
       await createFile(file);
@@ -33,7 +36,32 @@ class StoredData {
     await file.writeAsString(jsonFileData);
   }
 
+  void saveFile() async {
+    Directory appDir = await getApplicationDocumentsDirectory();
+    String filePath = "${appDir.path}/storedData.json";
+    File file = File(filePath);
+    final fileData = {'name': name, "messages": messages};
+    final fileDataJson = jsonEncode(fileData);
+    file.writeAsString(fileDataJson);
+  }
+
+  void moveSendToFront(String userID) {
+    int unread = 0;
+    String username = "Tentamens";
+    for (var i in messages) {
+      if (i["userId"] == userID) {
+        username = i["name"];
+        unread = i["unread"];
+        messages.remove(i);
+        break;
+      }
+    }
+    messages.insert(0, {"name": username, "userId": userID, "unread": unread});
+  }
+
   get getName => name;
+  get getMessage => name;
   set setNewMessageNotifer(v) => messageNotifer = v;
+  set setMessage(v) => messages = v;
   NewMessageNotifer get getNewMessageNotifer => messageNotifer;
 }
