@@ -5,6 +5,7 @@ import 'package:messaging_app/discoverPage/discoverPageHeader.dart';
 import 'package:messaging_app/discoverPage/discoverPageMain.dart';
 import 'package:messaging_app/dmPage/dmPageMain.dart';
 import 'package:messaging_app/globals/crypto.dart';
+import 'package:messaging_app/globals/messageFileHandler.dart';
 import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:messaging_app/globals/storedData.dart';
 import 'package:messaging_app/homepage/homePage.dart';

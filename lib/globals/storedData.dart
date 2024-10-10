@@ -7,12 +7,13 @@ import 'package:path_provider/path_provider.dart';
 String name = "";
 bool loaded = false;
 late NewMessageNotifer messageNotifer;
-List<Map> messages = [
+List messages = [
   {"name": "Tentamens", "userId": "testing1", "unread": 0}
 ];
 
 class StoredData {
   void load() async {
+    print("starting load");
     if (loaded) {
       return;
     }
@@ -27,11 +28,13 @@ class StoredData {
     var fileDataJson = file.readAsStringSync();
     var fileData = jsonDecode(fileDataJson);
     name = fileData["name"] ?? "";
+    messages = fileData["messages"] ?? [];
+    print(messages);
   }
 
   Future<void> createFile(file) async {
     file.createSync();
-    var fileData = {"name": "Anonymous"};
+    var fileData = {"name": "Anonymous", "messages": []};
     var jsonFileData = jsonEncode(fileData);
     await file.writeAsString(jsonFileData);
   }
@@ -57,10 +60,11 @@ class StoredData {
       }
     }
     messages.insert(0, {"name": username, "userId": userID, "unread": unread});
+    saveFile();
   }
 
   get getName => name;
-  get getMessage => name;
+  get getMessage => messages;
   set setNewMessageNotifer(v) => messageNotifer = v;
   set setMessage(v) => messages = v;
   NewMessageNotifer get getNewMessageNotifer => messageNotifer;

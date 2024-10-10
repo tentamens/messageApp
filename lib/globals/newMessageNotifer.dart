@@ -5,7 +5,7 @@ import 'package:socket_io_client/socket_io_client.dart' as soi;
 
 late soi.Socket socket;
 
-List newMessageData = ["", "", false];
+List newMessageData = ["", false];
 String currentOpenId = "";
 
 class NewMessageNotifer extends ChangeNotifier {
@@ -30,15 +30,17 @@ class NewMessageNotifer extends ChangeNotifier {
       if (data.runtimeType == List) {
         return;
       }
+
+      MessageFileHandler()
+          .addUserMessage(data["from"]["userId"], [data["text"], false]);
+      StoredData().moveSendToFront(data["from"]["userId"]);
+
       if (currentOpenId != data["from"]["userId"]) {
         return;
       }
-      StoredData().moveSendToFront(data["from"]["userId"]);
-      newMessageData[1] = data["text"];
-      newMessageData[2] = true;
+      newMessageData[0] = data["text"];
+      newMessageData[1] = true;
       newMessage();
-      MessageFileHandler()
-          .addUserMessage(data["userId"], [data["text"], false]);
     });
 
     socket.on('pm', (data) {
@@ -57,7 +59,11 @@ class NewMessageNotifer extends ChangeNotifier {
   }
 
   void sendMessage(String messageData) {
-    final data = {"from": "testing", "to": "testing1", "text": messageData};
+    final data = {
+      "from": {"userId": "testing", "name": "Tentamens"},
+      "to": "testing1",
+      "text": messageData
+    };
     socket.emit("pm", data);
   }
 

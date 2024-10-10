@@ -23,13 +23,15 @@ class MessageFileHandler {
     var fileData = jsonDecode(fileDataJson);
 
     messageData = fileData["messageData"];
+    print(messageData);
   }
 
   void addUserMessage(String userid, List newMessage) {
     if (!messageData.containsKey(userid)) {
       messageData[userid] = {"name": "hello", "pubkey": [], "messages": []};
     }
-    messageData[userid]["messages"].addAll(newMessage);
+    messageData[userid]["messages"].add(newMessage);
+    saveFile();
   }
 
   void addNewUser(String userId, String name, List pubkey) {
@@ -37,10 +39,14 @@ class MessageFileHandler {
   }
 
   List getUserMessages(String userId) {
-    if (!messageData.containsValue(userId)) {
+    print(messageData);
+    print(userId);
+    if (!messageData.containsKey(userId)) {
+      print("none found");
       return [];
     }
-    return messageData[userId];
+    print(messageData[userId]["messages"][1].runtimeType);
+    return messageData[userId]["messages"];
   }
 
   Future<void> createFile(file) async {
@@ -51,6 +57,7 @@ class MessageFileHandler {
   }
 
   void saveFile() async {
+    print(messageData);
     Directory appDir = await getApplicationDocumentsDirectory();
     String filePath = "${appDir.path}/storedMessages.json";
     File file = File(filePath);
