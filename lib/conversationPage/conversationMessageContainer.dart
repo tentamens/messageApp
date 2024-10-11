@@ -35,9 +35,8 @@ class _ConversationMessageContainerState
   }
 
   void reactToNotifer() {
-    print("hello world I called");
     setState(() {
-      message.add(List.from(NewMessageNotifer().getNewMessageData));
+      message.insert(0, List.from(NewMessageNotifer().getNewMessageData));
     });
   }
 

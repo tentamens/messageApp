@@ -69,8 +69,9 @@ class NewMessageNotifer extends ChangeNotifier {
 
   void saveOwnMessage(String userId, String messageData) {
     print("hello world");
-    newMessageData[1] = messageData;
-    newMessageData[2] = false;
+    newMessageData[0] = messageData;
+    newMessageData[1] = false;
+
     notifyListeners();
     MessageFileHandler().addUserMessage(userId, [messageData, true]);
   }

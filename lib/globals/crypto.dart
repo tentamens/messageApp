@@ -8,6 +8,7 @@ List public = [];
 List private = [];
 String userId = "";
 bool loaded = false;
+String privateId = "";
 
 class Crypto {
   void init() async {
@@ -25,10 +26,10 @@ class Crypto {
 
     var fileDataJson = file.readAsStringSync();
     var fileData = jsonDecode(fileDataJson);
-    return;
     public = fileData["public"] ?? [];
     private = fileData["private"] ?? [];
     userId = fileData["userId"];
+    privateId = fileData["privateId"];
     print(userId);
     if (userId == "") {
       initNewClient();
@@ -36,8 +37,9 @@ class Crypto {
   }
 
   void initNewClient() async {
-    print("init new client");
+    print("init client");
     userId = RandomStringGenerator(maxLength: 15, minLength: 10).generate();
+    privateId = RandomStringGenerator(maxLength: 25, minLength: 20).generate();
     final algorithm = X25519();
     final keyPair = await algorithm.newKeyPair();
     final publicKey = await keyPair.extract();
@@ -51,7 +53,12 @@ class Crypto {
     Directory appDir = await getApplicationDocumentsDirectory();
     String filePath = "${appDir.path}/cryptoStuff.json";
     File file = File(filePath);
-    final fileData = {"public": public, "private": private, "userId": userId};
+    final fileData = {
+      "public": public,
+      "private": private,
+      "userId": userId,
+      "privateId": privateId
+    };
     final saveData = jsonEncode(fileData);
     file.writeAsString(saveData);
   }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:messaging_app/background.dart';
 import 'package:messaging_app/conversationPage/conversationMessageContainer.dart';
+import 'package:messaging_app/conversationPage/conversationPageBack.dart';
 import 'package:messaging_app/createNewMessagePage/createNewMessageFooter.dart';
 import 'package:messaging_app/globals/newMessageNotifer.dart';
 import 'package:messaging_app/globals/socketConnection.dart';
@@ -42,7 +43,8 @@ class _ConversationPageMainState extends State<ConversationPageMain> {
                       .saveOwnMessage("testing1", text);
                   StoredData().getNewMessageNotifer.sendMessage(text);
                 },
-              )
+              ),
+              ConversationPageBack(),
             ],
           ),
         ),
