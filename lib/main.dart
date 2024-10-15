@@ -4,6 +4,7 @@ import 'package:messaging_app/conversationPage/conversationPageMain.dart';
 import 'package:messaging_app/discoverPage/discoverPageHeader.dart';
 import 'package:messaging_app/discoverPage/discoverPageMain.dart';
 import 'package:messaging_app/dmPage/dmPageMain.dart';
+import 'package:messaging_app/dmPage/editProfilePage/editProfilePageMain.dart';
 import 'package:messaging_app/globals/crypto.dart';
 import 'package:messaging_app/globals/messageFileHandler.dart';
 import 'package:messaging_app/globals/newMessageNotifer.dart';
@@ -17,7 +18,7 @@ void main() {
   newMess.registerClient();
   StoredData().setNewMessageNotifer = newMess;
   runApp(
-    const DmPageMain(),
+    const EditProfilePageMain(),
   );
 }
 
